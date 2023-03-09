@@ -12,5 +12,8 @@ df = pd.read_csv("C:\\Users\\Honor\\Desktop\\PIWorks\\country_vaccination_stats.
 #Fills the daily_vaccinations coloumn with the minimum daily_vaccinations value of the country
 df['daily_vaccinations'] = df['daily_vaccinations'].fillna(df.groupby('country')['daily_vaccinations'].transform('min'))
 
+#Fills the daily_vaccinations coloumn with 0 if the country has no records.
+df['daily_vaccinations'] = df['daily_vaccinations'].fillna(0)
+
 #exports to the changed dataFrame to specified address as version 2.
 df.to_csv('C:\\Users\\Honor\\Desktop\\PIWorks\\country_vaccination_stats_v2.csv', index=False)
